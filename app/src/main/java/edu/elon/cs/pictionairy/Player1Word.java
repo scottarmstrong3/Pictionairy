@@ -1,25 +1,30 @@
 package edu.elon.cs.pictionairy;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
-public class NameActivity extends Activity {
+public class Player1Word extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name);
+        setContentView(R.layout.activity_player1_word);
+        Bundle extras = getIntent().getExtras();
+
+        String value = extras.getString("name1");
+
+        TextView editText = (TextView) findViewById(R.id.player1_get_word);
+        editText.setText(value);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_name, menu);
+        getMenuInflater().inflate(R.menu.menu_player1_word, menu);
         return true;
     }
 
@@ -36,14 +41,5 @@ public class NameActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void nextplayer (View view) {
-        Intent intent = new Intent(this, Name2Activity.class);
-        EditText editText = (EditText) findViewById(R.id.player1_name);
-        String message = editText.getText().toString();
-        intent.putExtra("name1", message);
-
-        startActivity(intent);
     }
 }
